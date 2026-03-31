@@ -1,3 +1,4 @@
+import { ElementType } from "react";
 export const FRONTEND_SKILL = [
   { skill_name: "HTML", image: "html.png", width: 80, height: 80 },
   { skill_name: "CSS", image: "css.png", width: 80, height: 80 },
