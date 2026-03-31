@@ -22,19 +22,96 @@
 .Welcome-box {
   isolation: isolate;
   overflow: hidden;
-  align-items: center;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  border-radius: 32px;
-  box-shadow: inset 0 -7px 11px #a48fff1f;
   display: flex;
-
+  align-items: center;
   position: relative;
-  width: -moz-max-content;
+
+  padding: 20px 28px;
+  gap: 12px;
+
   width: max-content;
-  transition: 0.45s cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
+  border-radius: 32px;
+
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    inset 0 -7px 11px #a48fff1f,
+    0 10px 30px rgba(0, 0, 0, 0.2);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease;
 }
 
+/* 🌈 Animated gradient border */
+.Welcome-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  padding: 1px;
+
+  background: linear-gradient(
+    120deg,
+    #a48fff,
+    #00ffcc,
+    #ff6ec7,
+    #a48fff
+  );
+
+  background-size: 300% 300%;
+  animation: borderFlow 6s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ✨ Shine sweep */
+.Welcome-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: 0.8s;
+}
+
+.Welcome-box:hover::after {
+  left: 140%;
+}
+
+/* 🧲 Hover upgrade */
+.Welcome-box:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow:
+    inset 0 -7px 11px #a48fff1f,
+    0 0 25px rgba(164, 143, 255, 0.4),
+    0 0 60px rgba(0, 255, 204, 0.2);
+}
 .button-primary {
   background: linear-gradient(
       180deg,
@@ -58,11 +135,34 @@
 .scrollbar-hidden {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: contain;
+  scroll-padding-top: 20px;
+  -webkit-overflow-scrolling: touch;
 }
 .scrollbar-hidden::-webkit-scrollbar {
+  width: 0px;
   display: none;
 }
-
+.scrollbar-hidden:hover::-webkit-scrollbar {
+  width: 6px;
+}
 html {
   scroll-behavior: smooth;
+}
+.scrollbar-hidden::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background: #00ffcc;
+  border-radius: 10px;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb:hover {
+  background: #00ccaa;
+}
+.child{
+  scroll-snap-align: start;
 }

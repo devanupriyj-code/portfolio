@@ -1,14 +1,52 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
 
 import { slideInFromTop } from "@/lib/motion";
 
 export const Encryption = () => {
+  const ref = useRef(null);
+
+  // 📜 Scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  // 🎯 Effects
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]); // parallax
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.6, 0.3]); // fade
+  const blur = useTransform(scrollYProgress, [0, 1], ["0px", "6px"]); // blur
+
   return (
-    <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full -z-20">
-      <div className="absolute w-auto h-auto top-0 z-[5]">
+    <div
+      ref={ref}
+      className="relative flex items-center justify-center min-h-screen w-full overflow-hidden"
+    >
+
+      {/* 🎥 VIDEO (Next Level) */}
+      <motion.video
+        style={{
+          y,
+          opacity,
+          filter: blur,
+        }}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-20"
+      >
+        <source src="/videos/encryption-bg.webm" type="video/webm" />
+      </motion.video>
+
+      {/* 🌌 Overlay */}
+      <div className="absolute inset-0 bg-black/40 -z-10" />
+
+      {/* 🔤 Heading */}
+      <div className="absolute top-0 z-[10]">
         <motion.div
           variants={slideInFromTop}
           className="text-[40px] font-medium text-center text-gray-200"
@@ -21,8 +59,9 @@ export const Encryption = () => {
         </motion.div>
       </div>
 
-      <div className="flex flex-col items-center justify-center translate-y-[-50px] absolute z-[20] w-auto h-auto">
-        <div className="flex flex-col items-center group cursor-pointer w-auto h-auto">
+      {/* 🔒 Lock */}
+      <div className="flex flex-col items-center justify-center translate-y-[-50px] z-[20]">
+        <div className="flex flex-col items-center group cursor-pointer">
           <Image
             src="/lock-top.png"
             alt="Lock top"
@@ -44,23 +83,11 @@ export const Encryption = () => {
         </div>
       </div>
 
-      <div className="absolute z-[20] bottom-[10px] px-[5px]">
+      {/* 📝 Bottom text */}
+      <div className="absolute bottom-[10px] z-[10] px-[5px]">
         <div className="cursive text-[20px] font-medium text-center text-gray-300">
           Secure your data with end-to-end encryption.
         </div>
-      </div>
-
-      <div className="w-full flex items-start justify-center absolute">
-        <video
-          loop
-          muted
-          autoPlay
-          playsInline
-          preload="false"
-          className="w-full h-auto"
-        >
-          <source src="/videos/encryption-bg.webm" type="video/webm" />
-        </video>
       </div>
     </div>
   );

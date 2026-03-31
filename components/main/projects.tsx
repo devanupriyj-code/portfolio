@@ -1,6 +1,5 @@
 import { ProjectCard } from "@/components/sub/project-card";
 import { PROJECTS } from "@/constants";
-
 export const Projects = () => {
   return (
     <section

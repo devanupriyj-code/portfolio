@@ -6,93 +6,67 @@ import {
   FRONTEND_SKILL,
   FULLSTACK_SKILL,
   OTHER_SKILL,
-  SKILL_DATA,
 } from "@/constants";
 
 export const Skills = () => {
+
+  // 🔥 Merge all skills
+  const allSkills = [
+    ...FRONTEND_SKILL,
+    ...BACKEND_SKILL,
+    ...FULLSTACK_SKILL,
+    ...OTHER_SKILL,
+  ];
+
+  // ✅ Remove duplicates
+  const uniqueSkills = Array.from(
+    new Map(allSkills.map((item) => [item.skill_name, item])).values()
+  );
+
   return (
     <section
       id="skills"
-      style={{ transform: "scale(0.9)" }}
-      className="flex flex-col items-center justify-center gap-3 h-full relative overflow-hidden py-20"
+      className="relative flex flex-col items-center justify-center py-24 gap-10 overflow-hidden"
     >
+
+      {/* 🎥 Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-20 opacity-30"
+      >
+        <source src="/videos/skills-bg.webm" type="video/webm" />
+      </video>
+
+      {/* 🌌 Overlay */}
+      <div className="absolute inset-0 bg-black/50 -z-10" />
+
+      {/* ✨ Glow */}
+      <div className="absolute w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full -z-10" />
+
+      {/* 🔤 Title */}
       <SkillText />
 
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {SKILL_DATA.map((skill, i) => (
-          <SkillDataProvider
-            key={skill.skill_name}
-            src={skill.image}
-            name={skill.skill_name}
-            width={skill.width}
-            height={skill.height}
-            index={i}
-          />
-        ))}
-      </div>
+      {/* 🧠 Skills Grid */}
+      <div className="flex flex-wrap justify-center gap-6 max-w-5xl px-4">
 
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {FRONTEND_SKILL.map((skill, i) => (
-          <SkillDataProvider
+        {uniqueSkills.map((skill, i) => (
+          <div
             key={skill.skill_name}
-            src={skill.image}
-            name={skill.skill_name}
-            width={skill.width}
-            height={skill.height}
-            index={i}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {BACKEND_SKILL.map((skill, i) => (
-          <SkillDataProvider
-            key={skill.skill_name}
-            src={skill.image}
-            name={skill.skill_name}
-            width={skill.width}
-            height={skill.height}
-            index={i}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {FULLSTACK_SKILL.map((skill, i) => (
-          <SkillDataProvider
-            key={skill.skill_name}
-            src={skill.image}
-            name={skill.skill_name}
-            width={skill.width}
-            height={skill.height}
-            index={i}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {OTHER_SKILL.map((skill, i) => (
-          <SkillDataProvider
-            key={skill.skill_name}
-            src={skill.image}
-            name={skill.skill_name}
-            width={skill.width}
-            height={skill.height}
-            index={i}
-          />
-        ))}
-      </div>
-
-      <div className="w-full h-full absolute">
-        <div className="w-full h-full z-[-10] opacity-30 absolute flex items-center justify-center bg-cover">
-          <video
-            className="w-full h-auto"
-            preload="false"
-            playsInline
-            loop
-            muted
-            autoPlay
+            className="transition duration-300 hover:scale-110 hover:-translate-y-2"
           >
-            <source src="/videos/skills-bg.webm" type="video/webm" />
-          </video>
-        </div>
+            <SkillDataProvider
+              src={skill.image}
+              name={skill.skill_name}
+              width={skill.width}
+              height={skill.height}
+              index={i}
+            />
+          </div>
+        ))}
+
       </div>
     </section>
   );

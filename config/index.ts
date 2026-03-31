@@ -1,41 +1,68 @@
 import type { Metadata } from "next";
 
 export const siteConfig: Metadata = {
-  title: "John Doe | Space Portfolio",
-  description: "Welcome to my full stack Next.js 14 space portfolio.",
-  keywords: [
-    "reactjs",
-    "nextjs",
-    "vercel",
-    "react",
-    "space-portfolio",
-    "portfolio",
-    "react-icons",
-    "cn",
-    "clsx",
-    "3d-portfolio",
-    "3d-website",
-    "sonner",
-    "framer-motion",
-    "motion",
-    "animation",
-    "heroicons",
-    "next-themes",
-    "postcss",
-    "prettier",
-    "react-dom",
-    "tailwindcss",
-    "tailwindcss-animate",
-    "ui/ux",
-    "js",
-    "javascript",
-    "typescript",
-    "eslint",
-    "html",
-    "css",
-  ] as Array<string>,
-  authors: {
-    name: "Sanidhya Kumar Verma",
-    url: "https://github.com/sanidhyy",
+  title: {
+    default: "Devanupriy Jain | Full Stack Developer",
+    template: "%s | Devanupriy Jain",
   },
-} as const;
+
+  description:
+    "Full Stack Developer skilled in Next.js, React, and modern web technologies. Explore my projects, skills, and portfolio.",
+
+  keywords: [
+    "Devanupriy Jain",
+    "Full Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Web Developer Portfolio",
+    "Frontend Developer",
+    "Backend Developer",
+    "JavaScript",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Portfolio Website",
+    "UI UX Developer",
+    "India Developer",
+  ],
+
+  authors: [
+    {
+      name: "Devanupriy Jain",
+      url: "https://github.com/devanupriyj-code",
+    },
+  ],
+
+  creator: "Devanupriy Jain",
+
+  openGraph: {
+    title: "Devanupriy Jain | Full Stack Developer",
+    description:
+      "Explore my portfolio built with Next.js, featuring projects, animations, and modern UI.",
+    url: "https://your-portfolio-url.com", // 🔁 replace
+    siteName: "Devanupriy Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // 🔁 add this in public/
+        width: 1200,
+        height: 630,
+        alt: "Devanupriy Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Devanupriy Jain | Portfolio",
+    description:
+      "Check out my projects, skills, and modern web development work.",
+    images: ["/og-image.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
