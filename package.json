@@ -8,11 +8,7 @@
     "start": "next start",
     "lint": "eslint ."
   },
-  "author": {
-    "name": "Sanidhya Kumar Verma",
-    "email": "sanidhya.verma12345@gmail.com",
-    "url": "https://github.com/sanidhyy"
-  },
+  "author": "Sanidhya Kumar Verma <sanidhya.verma12345@gmail.com> (https://github.com/sanidhyy)",
   "description": "Welcome to my full stack Next.js 14 space portfolio.",
   "keywords": [
     "reactjs",
@@ -48,7 +44,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sanidhyy/space-portfolioit"
+    "url": "git+https://github.com/sanidhyy/space-portfolioit.git"
   },
   "homepage": "https://github.com/sanidhyy/space-portfolio#readme",
   "bugs": {
@@ -93,5 +89,9 @@
   "overrides": {
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3"
+  },
+  "main": "next.config.js",
+  "directories": {
+    "lib": "lib"
   }
 }
