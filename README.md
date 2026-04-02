@@ -96,8 +96,6 @@ space-portfolio/
 
 ![Showcase your skills](/.github/images/img2.png "Showcase your skills")
 
-![Built with Typescript](/.github/images/img3.png "Built with Typescript")
-
 ![Showcase your projects](/.github/images/img4.png "Showcase your projects")
 
 ## :gear: Tech Stack
