@@ -28,7 +28,7 @@ export const HeroContent = () => {
 
         {/* 🧠 Profile Image */}
         <Image
-          src="portfolio/public/1.png"
+          src="/1.png"
           alt="Devanupriy"
           height={200}
           width={200}
